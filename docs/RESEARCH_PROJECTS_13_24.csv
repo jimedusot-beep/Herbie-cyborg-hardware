@@ -1,0 +1,13 @@
+number,platform,title,url,lesson,access_evidence,license_review,reuse_status
+13,Hackaday,Stack-chan,https://hackaday.io/project/181344,Expressive companion face and movement,primary_page,author_claim_apache_2_0,reference_only
+14,Hackaday,FIEB Friendly Interactive Exploring Bot,https://hackaday.io/project/204422-fieb-friendly-interactive-exploring-bot,Environment sensing and expression,primary_page,not_checked,reference_only
+15,Hackster,DIY Smart Desktop Companion,https://www.hackster.io/roboattic_Lab/diy-smart-desktop-companion-016aed,Touch reaction and OLED expression,primary_page,article_cc_by_nc_sa,reference_only
+16,Hackster,ESP32 Robot with ESP-NOW Control and Animated Eyes,https://www.hackster.io/fabiosouza/esp32-robot-with-esp-now-control-and-animated-eyes-efa2a2,Telemetry and wireless link monitoring,primary_page,not_checked,reference_only
+17,Instructables,Pan and Tilt Camera with ESP32-CAM,https://www.instructables.com/Pan-and-Tilt-Camera-With-ESP32-CAM-L0Cost-Robot-Co/,Two-axis mechanical learning,indexed_page,not_checked,reference_only
+18,Instructables,Wi-Servo Browser Controlled Servomotors,https://www.instructables.com/Wi-Servo-Wi-fi-Browser-Controlled-Servomotors-with/,Browser motion request controls,indexed_page,not_checked,reference_only
+19,Printables,Robot Head from Stray,https://www.printables.com/model/251907-robot-head-from-stray-game,Modular snap-on face pieces,indexed_page,listing_cc_by_nc_4_0,reference_only
+20,Printables,Pan and Tilt Camera Mount,https://www.printables.com/model/967152-pan-tilt-camera-mount,Fasteners and clearance study,indexed_page,listing_cc_by_sa_4_0,reference_only
+21,GitLab,SimpleServoESP32,https://gitlab.com/noeFly/simpleservoesp32,ESP32 servo control interface,repository_page,not_checked,reference_only
+22,GitLab,LGDXRobot2 ChassisTuner,https://gitlab.com/lgdxrobotics/lgdxrobot2-chassistuner,Diagnostics and GUI testing,repository_page,project_claim_gplv3,reference_only
+23,Arduino Project Hub,Recordable Cardboard Robot Arm,https://projecthub.arduino.cc/ryan6534/recordable-cardboard-robot-arm-4b6783,Recording and replaying motion,primary_page,listing_gpl3_plus,reference_only
+24,Arduino Project Hub,Arduino Robotic Arm,https://projecthub.arduino.cc/milespeterson101/arduino-robotic-arm-8b8601,Beginner servo channels,primary_page,listing_cc_by_nd_4_plus,reference_only
