@@ -1,0 +1,39 @@
+{
+  "schema_version": "0.1.0",
+  "robot": "HERBIE",
+  "status": "design-only",
+  "repository_owners": {
+    "brain": "https://github.com/jimedusot-beep/Herbie",
+    "body": "https://github.com/jimedusot-beep/3D-vision",
+    "electronics": "https://github.com/jimedusot-beep/Herbie-cyborg-hardware"
+  },
+  "canonical_files": {
+    "electrical_components": "bom/components.csv",
+    "mechanical_components": "HERBIE_V1/PARTS.csv",
+    "software_interface": "hardware/README.md"
+  },
+  "hardware_interfaces": {
+    "pan": {
+      "component_id": "SERVO-HEAD-PAN-001",
+      "cad_part_id": null,
+      "physical_fit": "not-tested"
+    },
+    "tilt": {
+      "component_id": "SERVO-HEAD-TILT-001",
+      "cad_part_id": null,
+      "physical_fit": "not-tested"
+    },
+    "main_controller": {
+      "component_id": "CTRL-MAIN-001",
+      "cad_part_id": null,
+      "physical_fit": "not-tested"
+    },
+    "face_display": {
+      "component_id": "DISPLAY-FACE-001",
+      "cad_part_id": null,
+      "physical_fit": "not-tested"
+    }
+  },
+  "motion_enabled": false,
+  "physical_emergency_stop_verified": false
+}

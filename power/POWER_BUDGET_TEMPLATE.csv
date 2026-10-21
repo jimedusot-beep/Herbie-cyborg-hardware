@@ -1,0 +1,5 @@
+component_id,exact_model,supply_nominal_v,idle_current_a,operating_current_a,peak_or_stall_current_a,quantity,datasheet_url,measurement_or_estimate,verified
+CTRL-MAIN-001,,,,,,1,,unknown,false
+SERVO-HEAD-PAN-001,,,,,,1,,unknown,false
+SERVO-HEAD-TILT-001,,,,,,1,,unknown,false
+DISPLAY-FACE-001,,,,,,1,,unknown,false
