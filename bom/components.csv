@@ -1,0 +1,5 @@
+component_id,description,manufacturer_part,quantity,acquisition_status,electrical_rating,mounting_reference,verification_status
+CTRL-MAIN-001,Main controller candidate,,1,planned,,,unverified
+SERVO-HEAD-PAN-001,Pan actuator candidate,,1,planned,,,unverified
+SERVO-HEAD-TILT-001,Tilt actuator candidate,,1,planned,,,unverified
+DISPLAY-FACE-001,Face display candidate,,1,planned,,,unverified
