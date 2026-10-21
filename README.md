@@ -11,7 +11,7 @@ Electrical schematics, power, wiring, BOM and integration will be documented her
 ## Engineering references and build gates
 
 - [Preliminary electronics block diagram](schematics/CONCEPTUAL_BLOCK_DIAGRAM.md) — not a wiring schematic
-- [Electrical power budget worksheet](power/POWER_BUDGET_TEMPLATE.csv) — blank values mean unknown, not zero
+- [Electrical power budget worksheet](power/POWER_BUDGET_TEMPLATE.csv) and [screening calculator](tools/power_budget.py) — blank values mean unknown, not zero
 - [Build readiness checklist](integration/BUILD_READINESS_CHECKLIST.md) — evidence gates before physical motion
 - [Versioned integration manifest](integration/system-manifest.json) — cross-repository component IDs; actuation disabled
 - [Motion protocol incompatibility audit](docs/MOTION_PROTOCOL_COMPARISON.md) — two existing simulated command formats need reconciliation
