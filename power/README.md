@@ -5,3 +5,9 @@
 Use [POWER_BUDGET_TEMPLATE.csv](POWER_BUDGET_TEMPLATE.csv) to enter idle, operating and **peak/stall current** with sources and units, and [build readiness gates](../integration/BUILD_READINESS_CHECKLIST.md) before first actuation. Blank entries intentionally mean unknown; they are **not zero-current values**.
 
 Keep mains, damaged lithium batteries, and unsupervised actuation outside beginner bench prototyping.
+
+## Conservative screening calculator
+
+Run `python3 tools/power_budget.py` from the repository root. It groups the *summed documented peak or stall currents* by specified voltage rail **only if every row is verified with an exact model and datasheet**. Otherwise it reports the missing evidence and exits without a current estimate. It does not recommend a power supply, fuse, conductor or a safety margin; those require engineering decisions and supervised measurement.
+
+The example input currently has no verified electrical models, so the expected result is **POWER BUDGET INCOMPLETE**.
