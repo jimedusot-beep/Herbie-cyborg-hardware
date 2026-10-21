@@ -28,3 +28,11 @@ Electrical schematics, power, wiring, BOM and integration will be documented her
 - [Automated quality workflow](.github/workflows/hardware-quality.yml) — inventory, manifest, worksheet and unit checks
 
 **Foundation PR [#1](https://github.com/jimedusot-beep/Herbie-cyborg-hardware/pull/1) was merged on 2026-10-21.** That was a documentation/software-quality milestone, **not** a successful physical prototype. Exact parts, KiCad schematics, independently assessed motor-power interruption and supervised bench tests remain pending. **Do not enable motion from these materials.**
+
+## Phase 2 — Datasheet-backed candidate evaluation
+
+- [Manufacturer comparison](docs/PHASE2_COMPONENT_RESEARCH.md)
+- [Research candidates JSON](bom/researched_candidates.json) — candidates only; no confirmed ownership or compatibility
+- [Candidate catalog tests](tests/test_researched_candidates.py)
+
+Actual component selections, servo fit, power budget and physical safety are **unverified**. Research does not authorize physical actuation.
