@@ -1,0 +1,107 @@
+{
+  "schema_version": "0.1.0",
+  "status": "conceptual-unverified",
+  "mechanical_source": "https://github.com/jimedusot-beep/3D-vision/blob/main/HERBIE_V1/PARTS.csv",
+  "units": {
+    "dimensions": "mm",
+    "mass": "g",
+    "torque": "N*m"
+  },
+  "entries": [
+    {
+      "component_id": "CTRL-MAIN-001",
+      "candidate_models": [
+        "Raspberry Pi 4 Model B"
+      ],
+      "provisional_cad_parts": [
+        "HBR-016"
+      ],
+      "mounting_verified": false,
+      "exact_dimensions_mm": null,
+      "mass_g": null,
+      "power_requirements_verified": false,
+      "interface": "host USB/I2C/UART; hardware wiring unselected",
+      "open_measurements": [
+        "board revision",
+        "mounting hole locations",
+        "connector/cable clearance",
+        "cooling airflow",
+        "power connector and supply"
+      ]
+    },
+    {
+      "component_id": "SERVO-HEAD-PAN-001",
+      "candidate_models": [
+        "conventional positional RC servo TBD",
+        "ROBOTIS XL330-M288-T",
+        "ROBOTIS XC330-M288-T"
+      ],
+      "provisional_cad_parts": [
+        "HBR-004",
+        "HBR-005",
+        "HBR-006"
+      ],
+      "mounting_verified": false,
+      "exact_dimensions_mm": null,
+      "mass_g": null,
+      "power_requirements_verified": false,
+      "interface": "RC PWM OR DYNAMIXEL TTL serial; choose one compatible architecture",
+      "open_measurements": [
+        "actual head mass",
+        "pan-axis load and moment arm",
+        "bearing and support geometry",
+        "shaft and horn size",
+        "motion travel and cable twist",
+        "stall and continuous load"
+      ]
+    },
+    {
+      "component_id": "SERVO-HEAD-TILT-001",
+      "candidate_models": [
+        "conventional positional RC servo TBD",
+        "ROBOTIS XL330-M288-T",
+        "ROBOTIS XC330-M288-T"
+      ],
+      "provisional_cad_parts": [
+        "HBR-004",
+        "HBR-005"
+      ],
+      "mounting_verified": false,
+      "exact_dimensions_mm": null,
+      "mass_g": null,
+      "power_requirements_verified": false,
+      "interface": "RC PWM OR DYNAMIXEL TTL serial; choose one compatible architecture",
+      "open_measurements": [
+        "head center of mass",
+        "tilt lever arm and required torque",
+        "mounting hole spacing",
+        "mechanical hard stops",
+        "collision and cable clearance",
+        "stall and continuous load"
+      ]
+    },
+    {
+      "component_id": "DISPLAY-FACE-001",
+      "candidate_models": [
+        "display model TBD"
+      ],
+      "provisional_cad_parts": [
+        "HBR-003",
+        "HBR-004"
+      ],
+      "mounting_verified": false,
+      "exact_dimensions_mm": null,
+      "mass_g": null,
+      "power_requirements_verified": false,
+      "interface": "HDMI/DSI/SPI or other TBD",
+      "open_measurements": [
+        "active display area",
+        "panel overall width height thickness",
+        "connector location",
+        "viewing aperture and bezel",
+        "power draw",
+        "thermal clearance"
+      ]
+    }
+  ]
+}
