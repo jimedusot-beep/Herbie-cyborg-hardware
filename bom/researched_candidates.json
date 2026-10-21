@@ -1,0 +1,74 @@
+{
+  "schema_version": "0.1.0",
+  "purpose": "research-only",
+  "physical_compatibility_verified": false,
+  "ownership_confirmed": false,
+  "candidates": [
+    {
+      "id": "PI4",
+      "category": "host",
+      "model": "Raspberry Pi 4 Model B",
+      "voltage": "5 V DC",
+      "interface": "USB/I2C/UART",
+      "source": "https://datasheets.raspberrypi.com/rpi4/raspberry-pi-4-product-brief.pdf",
+      "notes": "Official product brief states 5V minimum 3A input; this is a host supply specification, not motor supply or actual current draw.",
+      "decision": "candidate",
+      "owned": false
+    },
+    {
+      "id": "PCA9685",
+      "category": "rc-servo-driver",
+      "model": "Adafruit PCA9685 16-channel servo driver breakout",
+      "voltage": "VCC logic typically 3.3V with Pi; V+ independently sized for selected servo",
+      "interface": "I2C to host; PWM outputs to RC servos",
+      "source": "https://learn.adafruit.com/16-channel-pwm-servo-driver/pinouts",
+      "notes": "16 channels; output enable disables PWM signals only, NOT servo power; no position feedback, local watchdog, or physical emergency-stop.",
+      "decision": "candidate",
+      "owned": false
+    },
+    {
+      "id": "MAESTRO6",
+      "category": "rc-servo-driver",
+      "model": "Pololu Micro Maestro 6",
+      "voltage": "processor USB or 5–16 V VIN; servo supply selected separately",
+      "interface": "USB or TTL serial; RC servo PWM outputs",
+      "source": "https://www.pololu.com/docs/0J40/all",
+      "notes": "6 channels, built-in speed/acceleration control; loss of USB may stop pulses, not physically disconnect motor power; host-fault behavior must be tested.",
+      "decision": "candidate",
+      "owned": false
+    },
+    {
+      "id": "ESP32S3",
+      "category": "microcontroller",
+      "model": "Espressif ESP32-S3 (chip, dev board TBD)",
+      "voltage": "chip supply 3.0–3.6 V typical 3.3 V; dev board input varies",
+      "interface": "UART/I2C/PWM; firmware required",
+      "source": "https://documentation.espressif.com/esp32_s3_datasheet_en.pdf",
+      "notes": "Potential local watchdog and limits if implemented/tested; not inherently fail-safe; exact dev board and voltage translation must be chosen.",
+      "decision": "candidate",
+      "owned": false
+    },
+    {
+      "id": "XL330",
+      "category": "smart-servo",
+      "model": "ROBOTIS DYNAMIXEL XL330-M288-T",
+      "voltage": "3.7–6.0 V, recommended 5 V",
+      "interface": "half-duplex TTL serial bus, not a direct PCA9685 RC PWM output",
+      "source": "https://robotis.us/products/dynamixel-xl330-m288-t",
+      "notes": "At 5 V stall 0.52 N·m, 1.47 A, 20x34x26 mm, 18 g. Stall torque is momentary, not continuous rated load; requires compatible serial adapter, power and mount.",
+      "decision": "candidate",
+      "owned": false
+    },
+    {
+      "id": "XC330",
+      "category": "smart-servo",
+      "model": "ROBOTIS DYNAMIXEL XC330-M288-T",
+      "voltage": "3.7–6.0 V, recommended 5 V",
+      "interface": "half-duplex TTL serial bus, not a direct PCA9685 RC PWM output",
+      "source": "https://docs.robotis.com/docs/dxl/model_reference/x_series/xc_series/xc330-m288/",
+      "notes": "At 5 V stall 0.93 N·m, 1.80 A, 20x34x26 mm, 23 g. Stall is not continuous torque; verify mount and compatible serial adapter.",
+      "decision": "candidate",
+      "owned": false
+    }
+  ]
+}
