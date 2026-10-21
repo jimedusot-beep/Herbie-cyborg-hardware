@@ -15,6 +15,6 @@ All remain **open**, not approved or physically validated.
 - [Controller architecture comparison](../controllers/ARCHITECTURE_OPTIONS.md) compares Pi + PCA9685, Pi + ESP32 and MCU-only strategies without a selected model.
 - [Controller decision worksheet](../controllers/DECISION_WORKSHEET.md) lists missing measurements and approval gates.
 - [Safety requirements V0](../integration/SAFETY_REQUIREMENTS_V0.md) defines review targets, not an implemented stop system.
-- [Intake log](../bom/INTAKE_GUIDE.md) supports donated/salvaged/owned part records while preserving the authoritative candidate BOM.
+- [Intake guide](../bom/INTAKE_GUIDE.md) reuses the existing [acquisition-evidence policy](INVENTORY_EVIDENCE_POLICY.md) and ledger without creating a second inventory.
 
 **Decision status:** no electronics ordered, acquired, selected or bench-tested by these documents. No architecture has been approved.

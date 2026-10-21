@@ -1,34 +1,31 @@
-# Inventory intake: owned, donated, salvaged and refurbished parts
+# Intake and assessment guide — one evidence ledger
 
-**Current known physical inventory: none independently confirmed.** The [intake log](intake-log.csv) contains a header and zero rows, deliberately. The authoritative [candidate BOM](components.csv) remains independent: four rows represent planned *roles*, not objects on a desk.
+**Current known physically confirmed inventory: none.** Do not invent rows in the existing [acquisition evidence CSV](acquisition_evidence.csv). H.E.R.B.I.E. already has an [acquisition evidence policy](../docs/INVENTORY_EVIDENCE_POLICY.md) and the single [canonical BOM](components.csv). This guide explains decisions *before* applying that policy; it does **not** establish a second log, new status enum, or competing source of truth.
 
-## What each row means
+## Three different kinds of record
 
-Record an intake row **only from actual owner-supplied evidence**; do not infer that a part is owned from a tutorial, photo of someone else's project, candidate controller or CAD model.
+1. **Research candidate** — exact manufacturer-supported option in [researched_candidates.json](researched_candidates.json). `owned: false` means no ownership evidence. Do not interpret that file as an acquisition ledger.
+2. **Functional BOM component** — `components.csv` holds intended roles (pan servo, tilt servo, main controller, face display), currently `planned` and `unverified`.
+3. **Acquisition evidence** — `acquisition_evidence.csv` supports only the evidence types and model/status requirements defined in [the policy](../docs/INVENTORY_EVIDENCE_POLICY.md), tested by [the existing unit tests](../tests/test_acquisition_evidence.py). Do not claim possession from a web listing or a donated-part offer.
 
-- **intake_id:** unique `INTAKE-001` etc., distinct from the functional BOM component ID.
-- **source_type:** `unconfirmed`, `owned`, `donated`, `salvaged`, `refurbished`, `purchased`. This is origin, *not* an endorsement or request to buy.
-- **custody_status:** `planned`, `requested`, `in-hand`, `quarantined`, `retired`. "In hand" means possession only.
-- **description, manufacturer_part, revision, quantity, condition:** describe precisely; unknown values remain blank or explicitly unknown.
-- **verification_stage:** `uninspected`, `visual-inspected`, `datasheet-matched`, `unpowered-checked`, `bench-demonstrated`. Stages are distinct observations, not system-level approval.
-- **datasheet_url:** primary manufacturer's documentation, only when verified for the exact model and revision.
-- **evidence_link:** a safe, accessible review note describing the observation or test. No personal addresses, serial numbers, passwords, Wi-Fi credentials, identifying photos or purchase account information.
-- **bom_component_id:** optional link to a candidate role from `components.csv`, assigned **after** compatibility review; no duplicate second bill of materials.
-- **notes:** risks, faults, missing docs, not a claim of physical safety.
+## Intake workflow without motor power
 
-## Safe intake sequence — do not energize
+- **Describe the claimed part:** user-reported source (already owned, donated, salvage, refurbished), whether in hand, exact package label, model and board revision *if observable*. No shipment or personal information in this public repository.
+- **Observe physical condition only with power disconnected:** corrosion, damaged insulation, loose contacts, swollen batteries, exposed mains wiring, missing markings. Quarantine suspicious batteries, chargers, loose cells and potentially energized mains items. Never charge damaged lithium batteries or try unknown supplies as a first test.
+- **Compare manufacturer evidence:** identify a primary datasheet; record voltage range, logic threshold, idle/operating/stall current, connector polarity, pinout, revision and dimensions. Leave fields unknown when uncertain.
+- **Distinguish identity from function:** a photographed label may support an ownership check but **not** electrical verification, successful movement or a validated safety mechanism.
+- **Record evidence in the existing ledger:** only when a relevant functional BOM ID exists; comply with `physical-inspection`, `donation-confirmation`, or `outreach-confirmation` requirements. For a spare or unrelated donated device with no decided role, first document a non-sensitive candidate note or review issue rather than fabricating a BOM component match.
+- **Advance only after review:** proposed bench tests require exact part numbers, unpowered continuity/polarity inspections, appropriate rated/current-limited supplies, independently reviewed motor-power interruption, and supervised testing. Do not energize based on this guide.
 
-1. Confirm whether the part is physically in hand, in transit or merely proposed. Label any claim as user-reported until checked.
-2. Inspect without power for damage, swelling, corrosion, loose pins and exposed conductors. Record concerns; **quarantine suspicious batteries, chargers and mains supplies**. Do not probe or recharge damaged lithium cells.
-3. Find the exact manufacturer's part number and datasheet. A similar-looking servo or breakout is not a reliable substitute.
-4. Compare voltage, current (including startup/stall), signal levels, connectors, firmware versions and dimensions against H.E.R.B.I.E.'s undecided requirements.
-5. For future supervised work, design an unpowered inspection checklist and current-limited bench plan with independent motor power interruption. A board working once is not an approved motor safety system.
-6. Cross-reference the authoritative BOM only after role compatibility and reviewer agreement. Preserve uncertainty.
+## Examples of truthful status language
 
-A completed `bench-demonstrated` entry **requires real physical evidence and an exact model**, but still does **not** imply all system safety gates pass. The [intake validator](../tests/validate_intake.py) catches missing/invalid status fields; it cannot prove that a claimed test occurred.
+- **Candidate:** "A Raspberry Pi model was researched; none was confirmed received."
+- **Offered donation:** "Owner reported an offer; model and delivery status pending evidence."
+- **In hand:** "Owner reported a board in hand; exact revision and electrical behavior not tested."
+- **Tested:** only after a dated, reproducible bench record on the exact part. A single software or browser simulator test never establishes a physical demonstration.
 
-## Recording a review example without pretending to own parts
+## Current safety boundary
 
-In a pull request or scratch note, describe a **fictional practice record** explicitly as fictional. Do **not** insert fabricated owned/verified parts into the real CSV. For early learning use the [research library](../docs/RESEARCH_LIBRARY.md).
+The [integration manifest](../integration/system-manifest.json) remains `motion_enabled: false` and `physical_emergency_stop_verified: false`. Even an item marked `owned-verified` in the existing BOM is *only* evidenced as physically identified under the policy, not safe to energize.
 
-Related: [power calculations](../power/README.md), [build-readiness gates](../integration/BUILD_READINESS_CHECKLIST.md), [controller options](../controllers/ARCHITECTURE_OPTIONS.md).
+Related work: [controller architecture comparison](../controllers/ARCHITECTURE_OPTIONS.md), [build readiness](../integration/BUILD_READINESS_CHECKLIST.md), [separate physical safety requirements](../integration/SAFETY_REQUIREMENTS_V0.md).

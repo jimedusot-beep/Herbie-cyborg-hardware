@@ -14,7 +14,7 @@ Electrical schematics, power, wiring, BOM and integration will be documented her
 - [Numbered robotics research library (1–24)](docs/RESEARCH_LIBRARY.md) — portals and 12 project references, with verification and licensing cautions
 - [Machine-readable research list (13–24)](docs/RESEARCH_PROJECTS_13_24.csv) — searchable reference index, not a component list
 - [Research-source verification notes](docs/RESEARCH_VERIFICATION_2026-10-21.md) — access limits, licenses and corrections
-- [Part intake guide](bom/INTAKE_GUIDE.md) — log actual donated, owned or salvaged parts without claiming tests
+- [Part intake guide](bom/INTAKE_GUIDE.md) — use the existing acquisition-evidence ledger; do not invent owned parts
 - [Controller architecture comparison](controllers/ARCHITECTURE_OPTIONS.md) — Pi, driver and ESP32 options; no choice made
 - [Proposed safety requirements](integration/SAFETY_REQUIREMENTS_V0.md) — review-only, not implemented
 - [Research evaluation template](docs/RESEARCH_EVALUATION_TEMPLATE.md) — review evidence before adopting external ideas
