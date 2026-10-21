@@ -22,7 +22,7 @@ def calculate(rows):
             volts = Decimal(row["supply_nominal_v"])
             amps = Decimal(row["peak_or_stall_current_a"])
             qty = int(row["quantity"])
-            if not vols.is_finite() or not amps.is_finite() or volts <= 0 or amps <= 0 or qty <= 0:
+            if not volts.is_finite() or not amps.is_finite() or volts <= 0 or amps <= 0 or qty <= 0:
                 raise ValueError
         except (ValueError, InvalidOperation, TypeError):
             incomplete.append(f"{cid}: invalid voltage, current or quantity")
