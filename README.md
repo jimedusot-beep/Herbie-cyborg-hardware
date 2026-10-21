@@ -22,3 +22,11 @@ Electrical schematics, power, wiring, BOM and integration will be documented her
 - [Automated quality workflow](.github/workflows/hardware-quality.yml) — BOM, manifest, worksheet and unit checks
 
 **Hardware PR #1 is a draft.** Actual component selection, KiCad schematics, physical E-stop, and bench tests remain pending.
+
+## Phase 2 — Manufacturer-backed component research
+
+- [Compare controller and servo architectures](docs/PHASE2_COMPONENT_RESEARCH.md)
+- [Machine-readable research candidates](bom/researched_candidates.json) — **not** an ownership inventory or a confirmed BOM selection
+- [Catalog verification tests](tests/test_researched_candidates.py) — checks citations, required fields and protocol distinctions
+
+Do not select motor voltage or wiring from candidate research alone. Physical motion stays disabled.
