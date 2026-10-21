@@ -36,3 +36,11 @@ Electrical schematics, power, wiring, BOM and integration will be documented her
 - [Candidate catalog tests](tests/test_researched_candidates.py)
 
 Actual component selections, servo fit, power budget and physical safety are **unverified**. Research does not authorize physical actuation.
+
+## Inventory evidence and procurement truth
+
+- [Acquisition evidence policy](docs/INVENTORY_EVIDENCE_POLICY.md) — defines when a component may be called owned, donated or requested
+- [Public-safe evidence ledger](bom/acquisition_evidence.csv) — currently empty; no acquisition claims made
+- [Evidence validation tests](tests/test_acquisition_evidence.py) — reject unsupported acquisition statuses and model mismatches
+
+The existing four BOM entries remain planned and unverified. Never commit private addresses, tracking numbers, receipts or serial numbers.
