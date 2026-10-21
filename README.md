@@ -14,6 +14,7 @@ Electrical schematics, power, wiring, BOM and integration will be documented her
 - [Electrical power budget worksheet](power/POWER_BUDGET_TEMPLATE.csv) — blank values mean unknown, not zero
 - [Build readiness checklist](integration/BUILD_READINESS_CHECKLIST.md) — evidence gates before physical motion
 - [Versioned integration manifest](integration/system-manifest.json) — cross-repository component IDs; actuation disabled
+- [Motion protocol incompatibility audit](docs/MOTION_PROTOCOL_COMPARISON.md) — two existing simulated command formats need reconciliation
 - [Open-source research review](docs/OPEN_SOURCE_DESIGN_REVIEW.md) — design patterns, not copied circuits
 - [Community design feedback issue](https://github.com/jimedusot-beep/Herbie-cyborg-hardware/issues/2) — datasheet-backed suggestions welcome
 - [Automated quality workflow](.github/workflows/hardware-quality.yml) — BOM, manifest, worksheet and unit checks
