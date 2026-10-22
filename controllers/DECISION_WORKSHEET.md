@@ -4,7 +4,7 @@
 
 | Question | Required evidence | Current status |
 |---|---|---|
-| Are any Pi/ESP32/driver boards actually in hand? | [Intake log](../bom/intake-log.csv) entry with exact marking/revision | **Unknown** |
+| Are any Pi/ESP32/driver boards actually in hand? | [Acquisition evidence ledger](../bom/acquisition_evidence.csv) and [policy](../docs/INVENTORY_EVIDENCE_POLICY.md) with exact markings/revision | **Unknown** |
 | Which face/AI tasks must run locally? | [Herbie software](https://github.com/jimedusot-beep/Herbie) runtime requirements and benchmarks | **Not measured for target board** |
 | What is head mass/torque/travel requirement? | Measured CAD assembly mass, CG, lever arms, clearances from [3D Vision](https://github.com/jimedusot-beep/3D-vision) | **Unknown** |
 | What two servo models fit and meet duty cycle? | Exact manufacturer datasheets and tests | **Unknown** |
