@@ -48,3 +48,11 @@ Actual component selections, servo fit, power budget and physical safety are **u
 - [Evidence validation tests](tests/test_acquisition_evidence.py) — reject unsupported acquisition statuses and model mismatches
 
 The existing four BOM entries remain planned and unverified. Never commit private addresses, tracking numbers, receipts or serial numbers.
+
+## CAD/electronics integration — review required
+
+- [Provisional component-to-CAD mapping](integration/cad-electronics-compatibility.json)
+- [Compatibility and measurement guide](integration/CAD_COMPATIBILITY_GUIDE.md)
+- [Mapping consistency tests](tests/test_cad_compatibility.py)
+
+The existing fixed-neck concept is **not** a verified two-axis servo mount. Physical fit and electrical safety remain unverified.
