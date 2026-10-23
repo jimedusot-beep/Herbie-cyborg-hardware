@@ -12,7 +12,9 @@ Electrical schematics, power, wiring, BOM and integration will be documented her
 
 **[OPEN THE TRIPWIRE EXPLODED ASSEMBLY](examples/mcgruber-light-beam-tripwire/README.md)** · [**One-click 3D Vision exploded model**](https://jimedusot-beep.github.io/3D-vision/?example=mcgruber-tripwire-exploded) · [Part measurement workbook](examples/mcgruber-light-beam-tripwire/measurement_intake_template.csv) · [Bench-to-CAD guide](examples/mcgruber-light-beam-tripwire/BENCH_TO_CAD.md) · [View labeled diagram](examples/mcgruber-light-beam-tripwire/diagrams/exploded-assembly.svg) · [Rotate exploded 3D STL](examples/mcgruber-light-beam-tripwire/models/exploded.stl) · [Download editable separate-part OBJ](examples/mcgruber-light-beam-tripwire/models/exploded.obj) · [Open 3D Vision](https://jimedusot-beep.github.io/3D-vision/)
 
-A **13-component, conceptual** emitter → sensor → ESP32 → phone tripwire assembly is mirrored here as a standalone electronics and CAD learning example. Both assembled and exploded STL/OBJ meshes are included, with component IDs, a measurement-gap manifest and provenance tracing back to [Project McGruber](https://github.com/jimedusot-beep/project-mcgruber).
+A **13-component, conceptual** emitter → sensor → ESP32 → phone tripwire assembly is mirrored here as a standalone electronics and CAD learning example.
+
+**[Verified cross-repository audit and outstanding blockers](examples/mcgruber-light-beam-tripwire/RELEASE_AUDIT_2026-10-23.md)** · [Reproduce/check illustrative meshes](examples/mcgruber-light-beam-tripwire/regenerate_models.py) Both assembled and exploded STL/OBJ meshes are included, with component IDs, a measurement-gap manifest and provenance tracing back to [Project McGruber](https://github.com/jimedusot-beep/project-mcgruber).
 
 This is **not** part of the H.E.R.B.I.E. V1 robot, BOM, motion architecture or validated CAD. Source geometry is approximate and unmeasured; real component voltage ratings, mechanical fit, functionality and testing are still unknown.
 
