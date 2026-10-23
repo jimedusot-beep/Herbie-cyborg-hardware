@@ -8,6 +8,15 @@ Electronics and physical integration engineering. **This repository is prelimina
 
 Electrical schematics, power, wiring, BOM and integration will be documented here. Do not energize components based on unverified plans.
 
+## McGruber tripwire — exploded assembly and 3D learning case
+
+**[OPEN THE TRIPWIRE EXPLODED ASSEMBLY](examples/mcgruber-light-beam-tripwire/README.md)** · [View labeled diagram](examples/mcgruber-light-beam-tripwire/diagrams/exploded-assembly.svg) · [Rotate exploded 3D STL](examples/mcgruber-light-beam-tripwire/models/exploded.stl) · [Download editable separate-part OBJ](examples/mcgruber-light-beam-tripwire/models/exploded.obj) · [Open 3D Vision](https://jimedusot-beep.github.io/3D-vision/)
+
+A **13-component, conceptual** emitter → sensor → ESP32 → phone tripwire assembly is mirrored here as a standalone electronics and CAD learning example. Both assembled and exploded STL/OBJ meshes are included, with component IDs, a measurement-gap manifest and provenance tracing back to [Project McGruber](https://github.com/jimedusot-beep/project-mcgruber).
+
+This is **not** part of the H.E.R.B.I.E. V1 robot, BOM, motion architecture or validated CAD. Source geometry is approximate and unmeasured; real component voltage ratings, mechanical fit, functionality and testing are still unknown.
+
+
 ## Start here: learn and research
 
 - [Beginner guide](docs/BEGINNER_GUIDE.md) — a safe simulation-first learning path
