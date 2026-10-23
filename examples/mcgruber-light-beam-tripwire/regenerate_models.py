@@ -13,7 +13,7 @@ import json
 import math
 from pathlib import Path
 
-ROOT = Path(__file__).resolve().parents[1]
+ROOT = Path(__file__).resolve().parent
 FACE_LIMIT = 100_000
 
 
