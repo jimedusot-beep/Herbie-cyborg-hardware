@@ -2,6 +2,7 @@
 
 Standard library only. This does not certify fit, printability or electrical safety.
 """
+import csv
 import json
 import math
 from pathlib import Path
@@ -103,6 +104,26 @@ class TripwireLearningCaseTests(unittest.TestCase):
             self.assertEqual(text.count("facet normal "), obj_faces)
             self.assertEqual(text.count("vertex "), obj_faces * 3)
             self.assertEqual(text.count("endfacet"), obj_faces)
+
+    def test_measurement_template_contains_only_real_part_ids_without_invented_observations(self):
+        with (CASE / "measurement_intake_template.csv").open(
+            newline="", encoding="utf-8"
+        ) as handle:
+            rows = list(csv.DictReader(handle))
+        ids = [p["id"] for p in self.manifest["parts"]]
+        self.assertEqual([row["part_id"] for row in rows], ids)
+        self.assertEqual([row["component"] for row in rows],
+                         [p["name"] for p in self.manifest["parts"]])
+        observed = [
+            "donor_item_or_purchase", "exact_part_or_revision", "acquisition_evidence",
+            "width_mm", "height_mm", "depth_mm", "diameter_mm", "mount_holes_mm",
+            "voltage_v", "current_ma", "sensor_beam_present", "sensor_beam_blocked",
+            "instrument", "test_date", "evidence_reference", "notes",
+        ]
+        for row in rows:
+            for field in observed:
+                self.assertEqual(row[field], "", (row["part_id"], field))
+            self.assertIn(row["need"], ("required", "optional", "conditional"))
 
     def test_diagrams_are_valid_svg_and_not_executable(self):
         for filename in ("exploded-assembly.svg", "signal-flow.svg"):
