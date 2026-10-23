@@ -4,6 +4,8 @@ Standard library only. This does not certify fit, printability or electrical saf
 """
 import csv
 import json
+import subprocess
+import sys
 import math
 from pathlib import Path
 import unittest
@@ -124,6 +126,15 @@ class TripwireLearningCaseTests(unittest.TestCase):
             for field in observed:
                 self.assertEqual(row[field], "", (row["part_id"], field))
             self.assertIn(row["need"], ("required", "optional", "conditional"))
+
+    def test_reproducible_concept_geometry_and_part_transform_contract(self):
+        result = subprocess.run(
+            [sys.executable, str(CASE / "regenerate_models.py"), "--check"],
+            capture_output=True, text=True, timeout=15, check=False,
+        )
+        self.assertEqual(result.returncode, 0, result.stderr or result.stdout)
+        self.assertIn("physical fit unverified", result.stdout)
+        self.assertIn("1044 illustrative triangles", result.stdout)
 
     def test_diagrams_are_valid_svg_and_not_executable(self):
         for filename in ("exploded-assembly.svg", "signal-flow.svg"):
