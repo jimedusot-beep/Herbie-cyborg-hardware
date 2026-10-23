@@ -21,7 +21,16 @@ This case study puts the **light-beam tripwire's diagrams and explorable 3D mode
 
 GitHub normally provides an interactive 3D preview for STL files; browser support and current GitHub UI vary. If GitHub displays a download instead, use the **3D Vision workflow** below. These are genuine triangle meshes, **not measured mechanical parts**.
 
-### 3. Select, hide and inspect individual components in 3D Vision
+### 3. Open the assembly directly in the 3D Vision workshop
+
+After the accompanying 3D Vision Experiment 002 update is published, these links open the **actual 13-part mesh assembly without a download or manual import**:
+
+- [**Open exploded tripwire in 3D Vision**](https://jimedusot-beep.github.io/3D-vision/?example=mcgruber-tripwire-exploded)
+- [**Open assembled tripwire in 3D Vision**](https://jimedusot-beep.github.io/3D-vision/?example=mcgruber-tripwire-assembled)
+
+The viewer provides orbit, zoom, a part tree, hide/isolate, visual inspection and exporting. It is an educational 3D concept, **not a measured case, functional electrical design, or proof of printing fit**. If the links have not yet been deployed, use the manual OBJ-import steps next.
+
+### 4. Select, hide and inspect individual components through manual import into 3D Vision
 
 1. Download the [**exploded OBJ**](models/exploded.obj) or [**assembled OBJ**](models/assembled.obj) from GitHub (use the file's **Download raw file** option).
 2. Open the existing [**3D Vision workshop**](https://jimedusot-beep.github.io/3D-vision/) on your phone or computer.
