@@ -4,6 +4,14 @@
 
 This case study puts the **light-beam tripwire's diagrams and explorable 3D models directly inside H.E.R.B.I.E. Cyborg Hardware**, so you can inspect the physical arrangement alongside controller, wiring, and hardware-integration research. The original design and live editable viewer code remain under [Project McGruber](https://github.com/jimedusot-beep/project-mcgruber); H.E.R.B.I.E.'s own robot BOM, 18 CAD part identities and integration manifest remain unchanged.
 
+## Engineering audit and regeneration
+
+- [**2026-10-23 three-repository audit**](RELEASE_AUDIT_2026-10-23.md) — confirms what works, what is deployed, what is blocked and what requires real measurements
+- [**Rebuild/check the 3D concept files**](regenerate_models.py) — run `python3 examples/mcgruber-light-beam-tripwire/regenerate_models.py --check`; append `--write` only when intentionally regenerating outputs
+- [Physical measurement worksheet](measurement_intake_template.csv) and [bench-to-CAD build guide](BENCH_TO_CAD.md) — all observation fields start blank
+
+These files are intentionally **not print-ready**. Passing geometry consistency checks does not measure components, establish an LED or sensor circuit, or turn the tripwire into a tested product.
+
 ## Open the exploded view
 
 ### 1. Original exploded assembly illustration — opens in GitHub
