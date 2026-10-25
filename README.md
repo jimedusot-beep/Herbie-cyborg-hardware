@@ -10,7 +10,9 @@ Electrical schematics, power, wiring, BOM and integration will be documented her
 
 ## McGruber tripwire — exploded assembly and 3D learning case
 
-**[NEW: Silent B/C optical tripwires — interactive 3D gallery](https://jimedusot-beep.github.io/3D-vision/optical-tripwires.html)** · [Experiment B blue/red LEDs](https://jimedusot-beep.github.io/3D-vision/?example=mcgruber-visible-b-exploded) · [Experiment C infrared pair](https://jimedusot-beep.github.io/3D-vision/?example=mcgruber-infrared-c-exploded)
+**[NEW: Silent B/C optical tripwires — interactive 3D gallery](https://jimedusot-beep.github.io/3D-vision/optical-tripwires.html)**
+
+**Now includes actual step-by-step assembly lessons:** [B · six stages, blue/red LEDs](https://jimedusot-beep.github.io/3D-vision/?example=mcgruber-visible-b-assembled&step=1) · [C · seven stages, silent infrared](https://jimedusot-beep.github.io/3D-vision/?example=mcgruber-infrared-c-assembled&step=1). Each stage highlights 3D parts, outlines connections and names the required physical test; no measurements or hardware passes are fabricated. · [Experiment B blue/red LEDs](https://jimedusot-beep.github.io/3D-vision/?example=mcgruber-visible-b-exploded) · [Experiment C infrared pair](https://jimedusot-beep.github.io/3D-vision/?example=mcgruber-infrared-c-exploded)
 
 
 **[OPEN THE TRIPWIRE EXPLODED ASSEMBLY](examples/mcgruber-light-beam-tripwire/README.md)** · [**One-click 3D Vision exploded model**](https://jimedusot-beep.github.io/3D-vision/?example=mcgruber-tripwire-exploded) · [Part measurement workbook](examples/mcgruber-light-beam-tripwire/measurement_intake_template.csv) · [Bench-to-CAD guide](examples/mcgruber-light-beam-tripwire/BENCH_TO_CAD.md) · [View labeled diagram](examples/mcgruber-light-beam-tripwire/diagrams/exploded-assembly.svg) · [Rotate exploded 3D STL](examples/mcgruber-light-beam-tripwire/models/exploded.stl) · [Download editable separate-part OBJ](examples/mcgruber-light-beam-tripwire/models/exploded.obj) · [Open 3D Vision](https://jimedusot-beep.github.io/3D-vision/)

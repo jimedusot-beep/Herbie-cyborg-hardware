@@ -16,6 +16,18 @@ These files are intentionally **not print-ready**. Passing geometry consistency 
 
 **[Open the interactive 3D model gallery](https://jimedusot-beep.github.io/3D-vision/optical-tripwires.html)** · [3D Vision source and builder notes](https://github.com/jimedusot-beep/3D-vision/tree/main/EXPERIMENTS/003_MCGRUBER_SILENT_TRIPWIRES)
 
+### Interactive step-by-step assembly teacher
+
+**[Start Experiment B · Step 1 of 6](https://jimedusot-beep.github.io/3D-vision/?example=mcgruber-visible-b-assembled&step=1)** · **[Start Experiment C · Step 1 of 7](https://jimedusot-beep.github.io/3D-vision/?example=mcgruber-infrared-c-assembled&step=1)**
+
+The published Three.js viewer now includes an on-screen mobile-friendly **guided build panel** that:
+- Highlights the relevant actual 3D part groups for each stage; tap a part name or focus the camera.
+- Shows **where to place** the components, a readable from→to wiring/lead connection list, and a Fluke/safety checkpoint before the next physical stage.
+- Has **Previous/Next**, collapsible lesson on mobile, and a linkable `&step=N` that survives assembled/exploded and simulated beam changes.
+- Tracks only **lessons read** in the browser. It explicitly does **not** store passed circuit tests or certify a working tripwire.
+
+**Critical truthfulness gate:** B's amplifier-to-2N4401 connection remains marked **BLOCKED — DESIGN MISSING**. C's described 5 V/10 kΩ pull-up/1 kΩ warning LED circuit is **Adafruit 2167/2168-specific** and must be confirmed on actual identified hardware before energizing. Neither build is physically measured, print-ready or proven to operate over a doorway.
+
 The original 13-part McGruber concept remains below. There are also two **distinct** standalone, no-audio teaching assemblies in the same 3D Vision workshop:
 
 | Experiment | Rotatable 3D scene | Exploded 3D scene | Evidence boundary |
