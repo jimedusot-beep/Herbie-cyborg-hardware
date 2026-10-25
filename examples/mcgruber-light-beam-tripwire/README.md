@@ -12,6 +12,21 @@ This case study puts the **light-beam tripwire's diagrams and explorable 3D mode
 
 These files are intentionally **not print-ready**. Passing geometry consistency checks does not measure components, establish an LED or sensor circuit, or turn the tripwire into a tested product.
 
+## Silent standalone tripwires B and C — 3D Vision Experiment 003
+
+**[Open the interactive 3D model gallery](https://jimedusot-beep.github.io/3D-vision/optical-tripwires.html)** · [3D Vision source and builder notes](https://github.com/jimedusot-beep/3D-vision/tree/main/EXPERIMENTS/003_MCGRUBER_SILENT_TRIPWIRES)
+
+The original 13-part McGruber concept remains below. There are also two **distinct** standalone, no-audio teaching assemblies in the same 3D Vision workshop:
+
+| Experiment | Rotatable 3D scene | Exploded 3D scene | Evidence boundary |
+| --- | --- | --- | --- |
+| **B · blue LED → unpowered red sensor → amplifier → 2N4401 → silent red warning LED** | [Open B](https://jimedusot-beep.github.io/3D-vision/?example=mcgruber-visible-b-assembled) | [Explode B](https://jimedusot-beep.github.io/3D-vision/?example=mcgruber-visible-b-exploded) | 16 conceptual part groups; amplifier and automatic warning **unverified** |
+| **C · invisible matched IR transmitter/receiver → current-limited silent red warning LED** | [Open C](https://jimedusot-beep.github.io/3D-vision/?example=mcgruber-infrared-c-assembled) | [Explode C](https://jimedusot-beep.github.io/3D-vision/?example=mcgruber-infrared-c-exploded) | 15 conceptual groups; Adafruit-style output is visually simulated, **not physically tested** |
+
+The new models have direct **Beam clear / Block beam** links. C makes the **illustrated** red LED glow when the *simulated* IR beam is blocked; it is **not reading a sensor**. B deliberately leaves the missing signal-conditioning interface and the silent warning output unproven. In both cases, wire routing, part dimensions and mounting are approximate, and the glowing line is only a visual guide (ordinary LEDs and invisible infrared do not produce visible light shafts in clear air).
+
+The canonical electronics instructions remain [McGruber P01](https://github.com/jimedusot-beep/project-mcgruber/tree/main/projects/01-light-beam-tripwire) and [McGruber P08](https://github.com/jimedusot-beep/project-mcgruber/tree/main/projects/08-infrared-tripwire). Do not use these instructional meshes as a pin-by-pin wiring diagram or print-ready enclosure.
+
 ## Open the exploded view
 
 ### 1. Original exploded assembly illustration — opens in GitHub
