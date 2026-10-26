@@ -1,46 +1,62 @@
-"""Isolated H.E.R.B.I.E. host/controller protocol experiment.
+"""Simulation-only host/controller boundary; not Rocky wire protocol or motor code.
 
-Inspired by the host/controller separation of cgro00/desk-robot v1.0
-(MIT license; no upstream source code copied). This is NOT Rocky's wire
-protocol and is NOT a physical motor driver.
+Architecture inspired by cgro00/desk-robot v1.0 (MIT). No upstream code copied.
+No hardware, servo pins, network, or motor control.
 """
 from dataclasses import dataclass
 from typing import Any
 
 VERSION = "herbie.hardware.lab/0"
-MOVEMENT = {"MOVE"}
-ACTIONS = MOVEMENT | {"STOP", "CLEAR_FAULT", "ARM", "DISCONNECT", "STATUS"}
+ACTIONS = {"MOVE", "STOP", "CLEAR_FAULT", "ARM", "DISCONNECT", "STATUS"}
 
 
 @dataclass
 class LabController:
-    """Simulation only. All movement commands return acceptance, not motion."""
+    """Fail-closed lab state machine. Physical actuation is impossible."""
     state: str = "DISARMED"
     last_sequence: int = -1
     connected: bool = False
 
+    def reply(self, ok: bool, reason: str = "") -> dict:
+        result = {"ok": ok, "state": self.state, "simulated": True}
+        if reason:
+            result["reason"] = reason
+        return result
+
     def handle(self, message: Any) -> dict:
         if not isinstance(message, dict):
-            return {"ok": False, "reason": "invalid-message", "state": self.state}
-        if message.get("version") != VERSION:
-            return {"ok": False, "reason": "version-mismatch", "state": self.state}
+            return self.reply(False, "invalid-message")
         action = message.get("action")
-        seq = message.get("seq")
-        if action not in ACTIONS or type(seq) is not int or seq < 0:
-            return {"ok": False, "reason": "invalid-command", "state": self.state}
-        if seq <= self.last_sequence:
-            return {"ok": False, "reason": "stale-sequence", "state": self.state}
-        self.last_sequence = seq
-        if action in {"STOP", "DISCONNECT"}:
+        # Emergency STOP is unconditional, including on bad/replayed frames.
+        # This is a software lab property, NOT a physical emergency stop.
+        if action == "STOP":
             self.state = "FAULT_LATCHED"
             self.connected = False
-        elif action == "CLEAR_FAULT":
+            return self.reply(True)
+        if message.get("version") != VERSION:
+            return self.reply(False, "version-mismatch")
+        seq = message.get("seq")
+        if action not in ACTIONS or type(seq) is not int or seq < 0:
+            return self.reply(False, "invalid-command")
+        if seq <= self.last_sequence:
+            return self.reply(False, "stale-sequence")
+        self.last_sequence = seq
+        if action == "DISCONNECT":
+            self.state = "FAULT_LATCHED"
+            self.connected = False
+            return self.reply(True)
+        if action == "CLEAR_FAULT":
             if self.state != "FAULT_LATCHED":
-                return {"ok": False, "reason": "no-fault", "state": self.state}
+                return self.reply(False, "no-fault")
             self.state = "DISARMED"
-        elif action == "ARM":
-            # No ARM permission in this lab: hardware readiness is unknown.
-            return {"ok": False, "reason": "hardware-not-verified", "state": self.state}
-        elif action == "MOVE":
-            return {"ok": False, "reason": "actuation-disabled", "state": self.state}
-        return {"ok": True, "state": self.state, "simulated": True}
+            return self.reply(True)
+        if action == "ARM":
+            return self.reply(False, "hardware-not-verified")
+        if action == "MOVE":
+            if (type(message.get("degrees")) not in (int, float)
+                    or not -180 <= message["degrees"] <= 180):
+                return self.reply(False, "invalid-move")
+            return self.reply(False, "actuation-disabled")
+        if action == "STATUS":
+            return self.reply(True)
+        return self.reply(False, "invalid-command")
