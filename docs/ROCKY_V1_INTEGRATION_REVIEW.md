@@ -48,4 +48,4 @@ These are source inspections, **not** successful builds or independent electrica
 5. Simulate disconnect, duplicate/stale messages, STOP/CLEAR_FAULT and startup.
 6. Obtain owner approval and supervised bench evidence before any physical motor control.
 
-**Fork status:** A true GitHub fork of `cgro00/desk-robot` is **not created** by this branch; the connected GitHub tools available in this session do not expose a fork operation. Use the [GitHub Fork control](https://github.com/cgro00/desk-robot/fork) to create a separate research fork when desired, then inspect the frozen `v1.0` tag there. This branch is a **Cyborg adaptation**, not a fork.
+**Fork status:** Research fork confirmed at https://github.com/jimedusot-beep/desk-robot . Frozen V1 branch: https://github.com/jimedusot-beep/desk-robot/tree/research/rocky-v1-frozen at upstream V1 commit `34614769c1211fc6943c18bc37ca7ddf850a7cc6`. This Cyborg branch remains a separate adaptation, not a fork.
