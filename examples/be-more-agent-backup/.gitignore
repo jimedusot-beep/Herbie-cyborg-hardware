@@ -1,0 +1,5 @@
+__pycache__/
+evidence/
+local-build-record.json
+*.zip
+.venv/

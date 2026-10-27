@@ -1,0 +1,23 @@
+{
+  "date": "2026-10-27",
+  "scope": "backup-only example; primary architecture/BOM/motion flag unchanged",
+  "host_tests": 82,
+  "existing_tests": 38,
+  "new_tests": 44,
+  "checks": [
+    "full hardware unittest discovery passed",
+    "canonical BOM validator passed",
+    "canonical integration manifest validator passed",
+    "Python sources compile",
+    "bounded simulation demo passed",
+    "read-only preflight executed on development host"
+  ],
+  "not_tested": [
+    "Arduino compile/flash (toolchain unavailable)",
+    "Pico MicroPython execution",
+    "actual hardware fit, current, battery, PWM timing, cutoff and stopping distance",
+    "AI end-to-end response on a Pi"
+  ],
+  "hardware_certified": false,
+  "physical_output_enabled": false
+}

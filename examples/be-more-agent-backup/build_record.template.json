@@ -1,0 +1,98 @@
+{
+  "schema_version": 1,
+  "option_id": "HERBIE-BACKUP-BMA-001",
+  "status": "backup-only",
+  "motion_enabled": false,
+  "gates": {
+    "parts_identified": {
+      "result": "pending",
+      "observations": {
+        "display_sku": null,
+        "driver_sku": null,
+        "motor_sku": null,
+        "cell_sku": null
+      },
+      "evidence_file": null,
+      "sha256": null,
+      "reviewer": null,
+      "tested_at": null
+    },
+    "mechanical_fit": {
+      "result": "pending",
+      "observations": {
+        "display_width_mm": null,
+        "display_height_mm": null,
+        "assembled_mass_kg": null,
+        "cables_clear": null
+      },
+      "evidence_file": null,
+      "sha256": null,
+      "reviewer": null,
+      "tested_at": null
+    },
+    "electrical_review": {
+      "result": "pending",
+      "observations": {
+        "review_note": null,
+        "power_domains_checked": null,
+        "fuse_selected": null,
+        "battery_spec_checked": null
+      },
+      "evidence_file": null,
+      "sha256": null,
+      "reviewer": null,
+      "tested_at": null
+    },
+    "stationary_bench": {
+      "result": "pending",
+      "observations": {
+        "voice_cycles": null,
+        "speaker_heard": null,
+        "camera_checked": null,
+        "power_stable": null
+      },
+      "evidence_file": null,
+      "sha256": null,
+      "reviewer": null,
+      "tested_at": null
+    },
+    "motion_fault_bench": {
+      "result": "pending",
+      "observations": {
+        "stop_latency_ms": null,
+        "timeout_latency_ms": null,
+        "reset_no_motion": null,
+        "cutoff_stops_motors": null
+      },
+      "evidence_file": null,
+      "sha256": null,
+      "reviewer": null,
+      "tested_at": null
+    },
+    "load_thermal_bench": {
+      "result": "pending",
+      "observations": {
+        "left_run_current_a": null,
+        "right_run_current_a": null,
+        "soak_minutes": null,
+        "temperatures_within_reviewed_limits": null
+      },
+      "evidence_file": null,
+      "sha256": null,
+      "reviewer": null,
+      "tested_at": null
+    },
+    "recovery": {
+      "result": "pending",
+      "observations": {
+        "backup_restored": null,
+        "reboot_disarmed": null,
+        "fault_requires_clear_then_arm": null
+      },
+      "evidence_file": null,
+      "sha256": null,
+      "reviewer": null,
+      "tested_at": null
+    }
+  }
+}
