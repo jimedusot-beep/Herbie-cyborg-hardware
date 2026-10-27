@@ -8,6 +8,10 @@ Electronics and physical integration engineering. **This repository is prelimina
 
 Electrical schematics, power, wiring, BOM and integration will be documented here. Do not energize components based on unverified plans.
 
+## Backup body option: Be More Agent
+
+[Be More Agent-inspired stationary/wheeled fallback](examples/be-more-agent-backup/README.md) is recorded as **backup-only**, with candidate parts, module wiring, controller firmware for review, fault tests, commissioning and recovery instructions. It does not replace Herbie's existing pan/tilt concept or canonical BOM. Physical output remains disabled; no build or electrical test is claimed.
+
 ## McGruber tripwire — exploded assembly and 3D learning case
 
 **[NEW: Silent B/C optical tripwires — interactive 3D gallery](https://jimedusot-beep.github.io/3D-vision/optical-tripwires.html)**

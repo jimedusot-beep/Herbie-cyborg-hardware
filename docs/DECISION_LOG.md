@@ -18,3 +18,9 @@ All remain **open**, not approved or physically validated.
 - [Intake guide](../bom/INTAKE_GUIDE.md) reuses the existing [acquisition-evidence policy](INVENTORY_EVIDENCE_POLICY.md) and ledger without creating a second inventory.
 
 **Decision status:** no electronics ordered, acquired, selected or bench-tested by these documents. No architecture has been approved.
+
+## 2026-10-27: retain Be More Agent as a backup body
+
+Owner request: keep the [Be More Agent-style Pi/screen body](../examples/be-more-agent-backup/README.md) as an alternative, not the primary expressive pan/tilt plan. Option ID `HERBIE-BACKUP-BMA-001`. Prototype CAD and namespaced candidate electronics exist. None establishes ownership, compatibility, physical validation or approval to energize.
+
+Stationary voice/display bring-up precedes any battery or wheel work. The isolated wheel protocol and disabled-output Pico candidate do not resolve or replace the primary robot's pan/tilt protocol. All previous primary architecture decisions remain open. Promotion requires exact hardware measurements, power/stop review and supervised physical evidence.

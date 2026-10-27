@@ -1,0 +1,20 @@
+{
+  "schema_version": 1,
+  "option_id": "HERBIE-BACKUP-BMA-001",
+  "status": "backup-only",
+  "recorded_at": "2026-10-27",
+  "primary_plan_replaced": false,
+  "motion_enabled": false,
+  "physical_fit_verified": false,
+  "hardware_tested": false,
+  "upstream_commit": "5fb755809583c8338b1205075b2d465baa9b49ef",
+  "upstream_url": "https://github.com/brenpoly/be-more-agent",
+  "original_video": "https://youtu.be/l5ggH-YhuAw",
+  "primary_manifest": "../../integration/system-manifest.json",
+  "candidate_catalog": "candidate_catalog.json",
+  "build_record": "build_record.template.json",
+  "geometry": "personal Rev A export; unmeasured purchased envelopes",
+  "protocol": "isolated wheel prototype; not pan/tilt",
+  "firmware": "pico_main.py (physical output disabled)",
+  "gate": "Unmeasured hardware stays unverified; no automatic activation"
+}
