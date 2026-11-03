@@ -7,6 +7,7 @@ A row claiming to be physical is still self-reported, not independently certifie
 """
 import csv
 import re
+import sys
 from datetime import date
 from decimal import Decimal, InvalidOperation
 from pathlib import Path
@@ -32,6 +33,16 @@ def analyze(rows):
         return results, ["No dated physical head measurements recorded."]
     seen = set()
     for line, row in enumerate(rows, 2):
+        if not isinstance(row, dict) or None in row:
+            blockers.append(f"line {line}: malformed observation row")
+            continue
+        fields = ("record_id", "axis", "assembly_revision", "pose_label",
+                  "measurement_basis", "moving_mass_g", "gravity_lever_arm_mm",
+                  "measurement_date", "evidence_reference")
+        if any(row.get(field) is not None and not isinstance(row[field], str)
+               for field in fields):
+            blockers.append(f"line {line}: observation fields must be text")
+            continue
         record = (row.get("record_id") or "").strip()
         if not re.fullmatch(r"HEAD-[0-9]{3,}", record):
             blockers.append(f"line {line}: missing/invalid observation ID")
@@ -53,7 +64,7 @@ def analyze(rows):
             continue
         try:
             date.fromisoformat(row["measurement_date"])
-        except ValueError:
+        except (ValueError, TypeError):
             blockers.append(f"{record}: invalid calendar date")
             continue
 
@@ -77,15 +88,18 @@ def analyze(rows):
 
 def screen_file(path=OBSERVATIONS):
     """Check exact CSV schema before computing; cannot validate authenticity of evidence."""
-    with Path(path).open(newline="", encoding="utf-8") as stream:
-        reader = csv.DictReader(stream)
-        if reader.fieldnames != HEADERS:
-            return [], ["Observation file header differs from expected schema."]
-        return analyze(list(reader))
+    try:
+        with Path(path).open(newline="", encoding="utf-8") as stream:
+            reader = csv.DictReader(stream)
+            if reader.fieldnames != HEADERS:
+                return [], ["Observation file header differs from expected schema."]
+            return analyze(list(reader))
+    except (OSError, UnicodeError, csv.Error) as exc:
+        return [], [f"Could not read head observation file: {exc}"]
 
 
-def main():
-    results, blockers = screen_file()
+def main(path=OBSERVATIONS):
+    results, blockers = screen_file(path)
     if blockers:
         print("MECHANICAL SCREEN INCOMPLETE — no build-ready torque assessment.")
         for reason in blockers:
@@ -100,4 +114,7 @@ def main():
 
 
 if __name__ == "__main__":
-    raise SystemExit(main())
+    if len(sys.argv) > 2:
+        print("Usage: python3 tools/head_static_torque.py [private-observations.csv]")
+        raise SystemExit(2)
+    raise SystemExit(main(sys.argv[1] if len(sys.argv) == 2 else OBSERVATIONS))
