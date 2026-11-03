@@ -62,6 +62,11 @@ class ManifestTests(unittest.TestCase):
         data["hardware_interfaces"]["pan"] = []
         self.assertTrue(any("must be an object" in e for e in self.modified_result(data)))
 
+    def test_rejects_unhashable_component_id_without_exception(self):
+        data = self.current_manifest()
+        data["hardware_interfaces"]["pan"]["component_id"] = ["CTRL-MAIN-001"]
+        self.assertTrue(any("non-BOM" in e for e in self.modified_result(data)))
+
     def test_rejects_missing_or_duplicate_bom_ids(self):
         data = self.current_manifest()
         self.assertTrue(any("component_id column" in e for e in
