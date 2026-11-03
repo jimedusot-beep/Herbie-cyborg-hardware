@@ -58,6 +58,21 @@ For a bare LED use a resistor/current-limited driver verified against the actual
 
 **Gate D:** the phone reports actual controller readings, not a simulated animation. Keep firmware and physical test results separately versioned from this geometry.
 
+## Stage D2 — record and audit **real** beam trials
+
+The [blank trial log](beam_trial_template.csv) and [offline validator](../../tools/tripwire_bench_audit.py) prepare evidence for [Cyborg issue #13](https://github.com/jimedusot-beep/Herbie-cyborg-hardware/issues/13). The template intentionally contains **zero invented trials**.
+
+1. Copy `beam_trial_template.csv` to a local working CSV; do not overwrite the blank template with simulated results. Use a new `trial_id` for every real trial.
+2. Test six combinations: **dim / normal / bright** room light × expected **clear / blocked** beam. Record at least **five trials per combination** (30 minimum total), including failures; this is a starter review threshold, not a statistically defensible safety demonstration.
+3. Use `reported_state` values `clear`, `alarm`, or `disconnected`; log the **actual** raw sensor reading when connected. Record the date and a **privacy-safe** evidence reference pointing to your own bench note. The validator does not establish that references or data are genuine.
+4. From the repository root, run:
+
+```bash
+python3 tools/tripwire_bench_audit.py path/to/your/real-trials.csv
+```
+
+The JSON report identifies missing coverage, malformed records, false alarms, missed beam blocks, and disconnected trials. Exit codes: **0** = only the supplied log met the minimal coverage and had no listed mismatch; **1** = sufficient recorded coverage but failures/disconnections; **2** = missing coverage or invalid log. **None of these statuses means the electrical circuit, ESP32 pin, ADC voltages, CAD dimensions, or physical safety is verified.** Do not commit private names, addresses, photos with personal details, or device serial numbers.
+
 ## Stage E — physical assembly only after measurements
 
 - Use the [assembled OBJ](models/assembled.obj) to understand group placement, not as a drill/print template.
