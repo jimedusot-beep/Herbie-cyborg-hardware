@@ -8,6 +8,16 @@ No phase below is automatically approved. Record measured evidence in `tests/` a
 - [ ] Specify display, camera, microphone and power requirements
 - [ ] Record acquisition status honestly in `bom/components.csv`
 
+## Offline private measurement screening
+
+The canonical `integration/head-load-observations.csv` is intentionally header-only until physical measurements exist. To avoid publishing private bench records, copy its header into a **local** CSV outside the GitHub repository, enter only measured tilt-horizontal head mass and perpendicular lever-arm values with dates and evidence references, then run:
+
+```bash
+python3 tools/head_static_torque.py /path/to/private-head-observations.csv
+```
+
+The calculator screens **static gravity moment only**, rejects missing/malformed evidence, and prints blockers rather than assuming blank values are zero. It cannot certify the observation's authenticity or determine pan dynamics, servo selection, transient/continuous torque, mounting fit, electrical safety, or an effective motor stop. A completed CSV does not close [issue #2](https://github.com/jimedusot-beep/Herbie-cyborg-hardware/issues/2) without physical review.
+
 ## Gate B: mechanical fit
 - [ ] Print or acquire actual head structure and mounts
 - [ ] Measure assembled head mass, center of gravity and lever arms
