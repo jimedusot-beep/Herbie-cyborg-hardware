@@ -4,7 +4,7 @@ import unittest
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "tools"))
-from rocky_v1_protocol_lab import LabController, VERSION, MAX_SEQUENCE
+from rocky_v1_protocol_lab import LabController, VERSION, MAX_SEQUENCE, HEARTBEAT_TIMEOUT_MS
 
 
 def cmd(seq, action, **extra):
@@ -66,6 +66,64 @@ class RockyV1AdaptationTests(unittest.TestCase):
         self.assertEqual(c.handle(cmd(MAX_SEQUENCE, "ARM"))["reason"], "stale-sequence")
         self.assertEqual(c.handle({"action": "STOP"})["state"], "FAULT_LATCHED")
 
+    def test_simulated_connect_heartbeat_remains_disarmed(self):
+        c = LabController()
+        self.assertEqual(c.handle(cmd(1, "CONNECT"))["reason"], "timestamp-required")
+        self.assertTrue(c.handle(cmd(2, "CONNECT"), now_ms=100)["ok"])
+        self.assertTrue(c.connected)
+        self.assertEqual(c.state, "DISARMED")
+        self.assertTrue(c.handle(cmd(3, "HEARTBEAT"), now_ms=200)["ok"])
+        self.assertEqual(c.handle(cmd(4, "ARM"))["reason"], "hardware-not-verified")
+        self.assertEqual(c.handle(cmd(5, "MOVE", degrees=1))["reason"], "actuation-disabled")
+
+    def test_timeout_fails_closed_and_never_auto_recovers(self):
+        c = LabController()
+        c.handle(cmd(1, "CONNECT"), now_ms=0)
+        self.assertTrue(c.tick(HEARTBEAT_TIMEOUT_MS - 1)["ok"])
+        result = c.tick(HEARTBEAT_TIMEOUT_MS)
+        self.assertFalse(result["ok"])
+        self.assertEqual(result["reason"], "heartbeat-timeout")
+        self.assertEqual(c.state, "FAULT_LATCHED")
+        self.assertFalse(c.connected)
+        self.assertEqual(c.handle(cmd(2, "HEARTBEAT"), now_ms=HEARTBEAT_TIMEOUT_MS + 1)["reason"],
+                         "fault-latched")
+        self.assertEqual(c.handle(cmd(3, "CLEAR_FAULT"))["state"], "DISARMED")
+        self.assertFalse(c.connected)
+        self.assertEqual(c.handle(cmd(4, "HEARTBEAT"), now_ms=HEARTBEAT_TIMEOUT_MS + 2)["reason"],
+                         "not-connected")
+        self.assertEqual(c.handle(cmd(5, "CONNECT"), now_ms=HEARTBEAT_TIMEOUT_MS + 3)["state"],
+                         "DISARMED")
+
+    def test_late_or_replayed_heartbeat_cannot_extend_deadline(self):
+        late = LabController()
+        late.handle(cmd(1, "CONNECT"), now_ms=100)
+        result = late.handle(cmd(2, "HEARTBEAT"), now_ms=100 + HEARTBEAT_TIMEOUT_MS)
+        self.assertEqual(result["reason"], "heartbeat-timeout")
+        self.assertEqual(late.state, "FAULT_LATCHED")
+
+        replay = LabController()
+        replay.handle(cmd(5, "CONNECT"), now_ms=0)
+        self.assertEqual(replay.handle(cmd(5, "HEARTBEAT"), now_ms=1)["reason"],
+                         "stale-sequence")
+        self.assertEqual(replay.tick(HEARTBEAT_TIMEOUT_MS)["reason"],
+                         "heartbeat-timeout")
+
+    def test_clock_regression_latches_fault(self):
+        c = LabController()
+        c.handle(cmd(1, "CONNECT"), now_ms=100)
+        self.assertEqual(c.tick(99)["reason"], "clock-regression")
+        self.assertEqual(c.state, "FAULT_LATCHED")
+        self.assertFalse(c.connected)
+
+    def test_invalid_clock_input_never_establishes_link(self):
+        for timestamp in (True, "100", -1, 1.5):
+            with self.subTest(timestamp=timestamp):
+                c = LabController()
+                result = c.handle(cmd(1, "CONNECT"), now_ms=timestamp)
+                self.assertEqual(result["reason"], "invalid-time")
+                self.assertEqual(c.state, "FAULT_LATCHED")
+                self.assertFalse(c.connected)
+
     def test_replay_and_malformed_rejected(self):
         c = LabController()
         c.handle(cmd(3, "STATUS"))
@@ -86,6 +144,7 @@ class RockyV1AdaptationTests(unittest.TestCase):
         self.assertEqual(c.handle(cmd(1, "STATUS")), {
             "version": VERSION, "kind": "status", "ok": True,
             "state": "DISARMED", "simulated": True, "last_sequence": 1,
+            "connected": False,
         })
 
 
