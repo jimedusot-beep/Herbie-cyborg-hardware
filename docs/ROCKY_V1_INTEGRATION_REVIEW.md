@@ -45,7 +45,9 @@ These are source inspections, **not** successful builds or independent electrica
 - Recognizable STOP and **trusted transport DISCONNECT events** latch regardless of stale/missing sequence or version; this is a local simulation, **not** an authenticated network interface or physical stop.
 - Normal command sequences are bounded to integers 0..2,147,483,647; rollover is **not** silently accepted. After exhaustion, start a newly reviewed session rather than resetting ordering within a live controller.
 - Responses identify the lab protocol version and distinguish `kind: "status"` from ordinary acknowledgments; `last_sequence` is diagnostic only.
-- **Still missing by design:** real heartbeat timer, transport authentication, physical controller, electrically independent motor-power stop, and validated fault recovery on hardware.
+- A deterministic `CONNECT`/`HEARTBEAT` simulation and injected-clock `tick(now_ms)` check now model stale, missing, or late heartbeat traffic. The illustrative timeout is 1,500 ms (not measured or calibrated). Explicit CLOCK regression/invalid timestamp causes a simulated fault latch.
+- The simulator remains disarmed even when `connected: true`; only explicit `CLEAR_FAULT` recovers from timeout, then an explicit `CONNECT` reestablishes simulated link.
+- **Still missing by design:** actual continuously scheduled heartbeat/watchdog timer, transport authentication, network listeners, real controller, electrically independent motor-power stop, and validated fault recovery on hardware. Calling `tick` is mandatory in this laboratory model; forgetting to call it means there is **no real timeout guarantee**.
 
 ## Release gates
 1. Record actual owned components, exact model/revision and manufacturer datasheets.
