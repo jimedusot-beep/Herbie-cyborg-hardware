@@ -81,6 +81,44 @@ class HeadStaticTorqueTests(unittest.TestCase):
         self.assertTrue(torque.analyze([self.fictional_example(measurement_date="2026-02-30")])[1])
         self.assertTrue(torque.analyze([self.fictional_example(assembly_revision="")])[1])
 
+    def test_malformed_nonmapping_or_extra_csv_cells_are_blockers(self):
+        for invalid in (None, [], "HEAD-001", {None: ["extra"]}):
+            with self.subTest(invalid=invalid):
+                results, blockers = torque.analyze([invalid])
+                self.assertEqual(results, [])
+                self.assertTrue(any("malformed observation row" in b for b in blockers))
+
+    def test_nontext_fields_cannot_crash_calculator(self):
+        for changed in (
+            {"record_id": ["HEAD-001"]},
+            {"moving_mass_g": 500},
+            {"measurement_date": ["2026-10-21"]},
+            {"evidence_reference": {"photo": "private"}},
+        ):
+            with self.subTest(changed=changed):
+                results, blockers = torque.analyze([self.fictional_example(**changed)])
+                self.assertEqual(results, [])
+                self.assertTrue(any("must be text" in b for b in blockers))
+
+    def test_missing_private_log_returns_blocker(self):
+        with tempfile.TemporaryDirectory() as directory:
+            missing = pathlib.Path(directory) / "missing.csv"
+            results, blockers = torque.screen_file(missing)
+            self.assertEqual(results, [])
+            self.assertTrue(any("Could not read" in b for b in blockers))
+
+    def test_extra_trailing_csv_cell_rejected(self):
+        with tempfile.TemporaryDirectory() as directory:
+            path = pathlib.Path(directory) / "observations.csv"
+            row = self.fictional_example()
+            with path.open("w", newline="", encoding="utf-8") as stream:
+                writer = csv.writer(stream)
+                writer.writerow(torque.HEADERS)
+                writer.writerow([row[key] for key in torque.HEADERS] + ["unexpected"])
+            results, blockers = torque.screen_file(path)
+            self.assertEqual(results, [])
+            self.assertTrue(any("malformed observation row" in b for b in blockers))
+
     def test_rejects_wrong_schema(self):
         with tempfile.TemporaryDirectory() as directory:
             path = pathlib.Path(directory) / "observations.csv"
