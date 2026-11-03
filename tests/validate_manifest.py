@@ -71,7 +71,8 @@ def validate(root=ROOT):
         if not isinstance(entry, dict):
             errors.append(f"{role}: interface entry must be an object")
             continue
-        if entry.get("component_id") not in ids:
+        component_id = entry.get("component_id")
+        if not isinstance(component_id, str) or component_id not in ids:
             errors.append(f"{role} references non-BOM component")
         if entry.get("physical_fit") != "not-tested":
             errors.append(f"{role} must not claim measured physical fit")
