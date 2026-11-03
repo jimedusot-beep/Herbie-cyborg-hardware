@@ -12,8 +12,13 @@ def calculate(rows):
     """Return voltage-rail sums or incomplete-row reasons. All components must be verified."""
     totals = defaultdict(lambda: Decimal("0"))
     incomplete = []
+    seen_row = False
     for row in rows:
-        cid = row.get("component_id", "<unknown>")
+        seen_row = True
+        if not isinstance(row, dict):
+            incomplete.append("<unknown>: invalid component record")
+            continue
+        cid = row.get("component_id") or "<unknown>"
         required = ("exact_model", "supply_nominal_v", "peak_or_stall_current_a", "datasheet_url")
         if row.get("verified") != "true" or any(not row.get(field) for field in required):
             incomplete.append(f"{cid}: exact datasheet-backed ratings not verified")
@@ -21,13 +26,15 @@ def calculate(rows):
         try:
             volts = Decimal(row["supply_nominal_v"])
             amps = Decimal(row["peak_or_stall_current_a"])
-            qty = int(row["quantity"])
+            qty = int(row.get("quantity"))
             if not volts.is_finite() or not amps.is_finite() or volts <= 0 or amps <= 0 or qty <= 0:
                 raise ValueError
         except (ValueError, InvalidOperation, TypeError):
             incomplete.append(f"{cid}: invalid voltage, current or quantity")
             continue
         totals[volts] += amps * qty
+    if not seen_row:
+        incomplete.append("No component rows entered; a blank budget is not validated.")
     return dict(totals), incomplete
 
 def main():

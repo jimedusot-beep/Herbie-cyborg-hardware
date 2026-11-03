@@ -25,6 +25,25 @@ class PowerCalculatorTests(unittest.TestCase):
         self.assertEqual(rail, {})
         self.assertEqual(len(incomplete), 1)
 
+    def test_missing_quantity_is_reported_not_crashed(self):
+        row = dict(self.valid)
+        del row["quantity"]
+        rail, incomplete = power_budget.calculate([row])
+        self.assertEqual(rail, {})
+        self.assertEqual(len(incomplete), 1)
+        self.assertIn("quantity", incomplete[0])
+
+    def test_header_only_budget_is_incomplete(self):
+        rail, incomplete = power_budget.calculate([])
+        self.assertEqual(rail, {})
+        self.assertEqual(len(incomplete), 1)
+        self.assertIn("No component rows", incomplete[0])
+
+    def test_malformed_record_fails_closed(self):
+        rail, incomplete = power_budget.calculate([None])
+        self.assertEqual(rail, {})
+        self.assertEqual(len(incomplete), 1)
+
     def test_invalid_quantity_and_negative_current_rejected(self):
         for row in (dict(self.valid, quantity="0"), dict(self.valid, peak_or_stall_current_a="-1")):
             with self.subTest(row=row):
