@@ -40,6 +40,13 @@ These are source inspections, **not** successful builds or independent electrica
 
 **Do not import:** Rocky `firmware/src/servo_neck.cpp`, `firmware/src/link.cpp`, pin maps, power wiring, personality/voice assets or proprietary artwork without a separate engineering and per-file license review.
 
+## Simulation protocol hardening (November 2, 2026)
+- The lab rejects non-string/unhashable action payloads without exceptions.
+- Recognizable STOP and **trusted transport DISCONNECT events** latch regardless of stale/missing sequence or version; this is a local simulation, **not** an authenticated network interface or physical stop.
+- Normal command sequences are bounded to integers 0..2,147,483,647; rollover is **not** silently accepted. After exhaustion, start a newly reviewed session rather than resetting ordering within a live controller.
+- Responses identify the lab protocol version and distinguish `kind: "status"` from ordinary acknowledgments; `last_sequence` is diagnostic only.
+- **Still missing by design:** real heartbeat timer, transport authentication, physical controller, electrically independent motor-power stop, and validated fault recovery on hardware.
+
 ## Release gates
 1. Record actual owned components, exact model/revision and manufacturer datasheets.
 2. Select and measure mechanical loads and clearances with 3D Vision.
