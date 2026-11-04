@@ -1,0 +1,33 @@
+# Python, test and editor output
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.venv/
+venv/
+.coverage
+htmlcov/
+*.log
+.DS_Store
+Thumbs.db
+
+# Private credentials and operator-only configuration
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+*.p12
+*.pfx
+secrets/
+.local/
+
+# Actual owner receipts, serials, measurements and private bench evidence.
+# Keep public templates, canonical BOM and synthetic tests tracked.
+private/
+private-data/
+local-evidence/
+bench-evidence/
+receipts/
+bom/receipts/
+bom/private-*.csv
+integration/private-*.csv
