@@ -8,6 +8,26 @@ Electronics and physical integration engineering. **This repository is prelimina
 
 Electrical schematics, power, wiring, BOM and integration will be documented here. Do not energize components based on unverified plans.
 
+## Quick start: validate the design files (software only)
+
+Use **Python 3.12**, the version used by [hardware CI](.github/workflows/hardware-quality.yml). From a terminal, clone this repository and change into its **root directory** (the folder containing `README.md`, `tests/`, `bom/` and `integration/`). The baseline checks use Python's standard library; **no `pip install` or physical hardware is required**.
+
+Run the following commands **from the repository root**:
+
+```sh
+python -m unittest discover -s tests -v
+python tests/validate_bom.py
+python tests/validate_manifest.py
+```
+
+On systems where the interpreter is named `python3`, replace `python` with `python3`. CI uses the more selective `python3 -m unittest discover -s tests -p 'test_*.py' -v` form and separately runs both validators. A normal result is passing unit tests, `BOM validation: PASS`, and `manifest: PASS`. A nonzero exit or `FAIL` means a software/data validation issue to investigate.
+
+**Passing is not build approval.** The four canonical BOM component records are **planned and unverified**, and [the acquisition-evidence ledger](bom/acquisition_evidence.csv) intentionally contains only its header until real, privacy-safe evidence exists. The [integration manifest](integration/system-manifest.json) is design-only, with `motion_enabled: false` and `physical_emergency_stop_verified: false`. These incomplete physical-build states are expected and do not make the software validation fail. Green checks establish that documented inventory formats, manifest references and software test expectations are internally consistent; they do **not** verify component ownership, electrical ratings, actual schematics, mechanical fit, emergency-stop hardware or safe motor actuation.
+
+**Optional, separate geometry example:** The [McGruber tripwire mesh tool](examples/mcgruber-light-beam-tripwire/regenerate_models.py) has a non-mutating `--check` mode and a file-writing `--write` mode. Neither is needed for the baseline commands above. Illustrative mesh verification or regeneration does not establish measured dimensions or print-ready hardware.
+
+See also [quality-check details](docs/QUALITY_CHECKS.md) and the [build-readiness checklist](integration/BUILD_READINESS_CHECKLIST.md). Do not energize unverified components based on successful software tests.
+
 ## Backup body option: Be More Agent
 
 [Be More Agent-inspired stationary/wheeled fallback](examples/be-more-agent-backup/README.md) is recorded as **backup-only**, with candidate parts, module wiring, controller firmware for review, fault tests, commissioning and recovery instructions. It does not replace Herbie's existing pan/tilt concept or canonical BOM. Physical output remains disabled; no build or electrical test is claimed.
@@ -76,3 +96,11 @@ The existing four BOM entries remain planned and unverified. Never commit privat
 - [Mapping consistency tests](tests/test_cad_compatibility.py)
 
 The existing fixed-neck concept is **not** a verified two-axis servo mount. Physical fit and electrical safety remain unverified.
+
+## License and third-party content
+
+Original project software and its accompanying software documentation are licensed under **Apache-2.0**; see [LICENSE](LICENSE). Copyright 2026 jimedusot-beep. This notice covers only material the project authors have authority to license. Existing file-specific notices, third-party terms and prior license grants remain in effect.
+
+See [research-source verification notes](docs/RESEARCH_VERIFICATION_2026-10-21.md). Linked tutorials, component datasheets and upstream designs retain their own terms; a research link is not permission to redistribute its content.
+
+CAD files, models, datasets, images, audio, fonts and other non-software assets are not granted a new license by this software notice. Use their existing asset-specific terms. Where provenance or permission is unresolved, this notice does not supply redistribution permission; record the source, author, exact license and modifications before redistributing that material.
