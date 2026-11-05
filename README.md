@@ -76,3 +76,11 @@ The existing four BOM entries remain planned and unverified. Never commit privat
 - [Mapping consistency tests](tests/test_cad_compatibility.py)
 
 The existing fixed-neck concept is **not** a verified two-axis servo mount. Physical fit and electrical safety remain unverified.
+
+## License and third-party content
+
+Original project software and its accompanying software documentation are licensed under **Apache-2.0**; see [LICENSE](LICENSE). Copyright 2026 jimedusot-beep. This notice covers only material the project authors have authority to license. Existing file-specific notices, third-party terms and prior license grants remain in effect.
+
+See [research-source verification notes](docs/RESEARCH_VERIFICATION_2026-10-21.md). Linked tutorials, component datasheets and upstream designs retain their own terms; a research link is not permission to redistribute its content.
+
+CAD files, models, datasets, images, audio, fonts and other non-software assets are not granted a new license by this software notice. Use their existing asset-specific terms. Where provenance or permission is unresolved, this notice does not supply redistribution permission; record the source, author, exact license and modifications before redistributing that material.
