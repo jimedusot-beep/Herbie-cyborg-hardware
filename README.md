@@ -104,3 +104,7 @@ Original project software and its accompanying software documentation are licens
 See [research-source verification notes](docs/RESEARCH_VERIFICATION_2026-10-21.md). Linked tutorials, component datasheets and upstream designs retain their own terms; a research link is not permission to redistribute its content.
 
 CAD files, models, datasets, images, audio, fonts and other non-software assets are not granted a new license by this software notice. Use their existing asset-specific terms. Where provenance or permission is unresolved, this notice does not supply redistribution permission; record the source, author, exact license and modifications before redistributing that material.
+
+## Related repos
+
+[Herbie](https://github.com/jimedusot-beep/Herbie) maintains the robot software (private). [3D Vision](https://github.com/jimedusot-beep/3D-vision) maintains the CAD workshop. This repository owns the electronics records and component mappings.
